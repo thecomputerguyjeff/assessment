@@ -1,7 +1,8 @@
 import logo from './logo.svg';
 import './App.css';
+import Head from "./Head";
 import {Button} from "reactstrap";
-import {useState} from "react";
+import React, {useEffect, useState} from 'react';
 
 const App = () => {
     const [testValue, setTestValue] = useState('value has not been set');
@@ -16,6 +17,7 @@ const App = () => {
 
     return (
         <div className="App">
+            <Head></Head>
             <header className="App-header">
                 <h1>
                     This is your test value :

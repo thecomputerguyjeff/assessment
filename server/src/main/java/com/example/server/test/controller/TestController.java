@@ -1,24 +1,29 @@
 package com.example.server.test.controller;
 
+import com.example.server.stripe.StripeService;
 import com.example.server.test.model.ResponseData;
 import com.example.server.test.service.TestService;
+import com.stripe.exception.StripeException;
+import com.stripe.model.CustomerCollection;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/test")
+@RequestMapping("/api/v1")
 @RequiredArgsConstructor
 @CrossOrigin(originPatterns = {"*localhost*", "/"})
 public class TestController {
 
-    private final TestService testService;
+    private final StripeService stripeService;
 
-    @GetMapping()
-    public ResponseEntity<ResponseData> getTestValue() {
-        return ResponseEntity.ok(testService.getTestValue());
+    @GetMapping("/getCustomers")
+    public ResponseEntity<Object> getCustomers() {
+        return ResponseEntity.ok(stripeService.getCustomers());
+    }
+
+    @PostMapping("/getCustomer")
+    public ResponseEntity<Object> getCustomer(@RequestBody String customerID) throws StripeException {
+        return ResponseEntity.ok(stripeService.getCustomer(customerID));
     }
 }
