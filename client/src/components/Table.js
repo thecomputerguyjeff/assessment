@@ -32,11 +32,9 @@ export default class CustomerTable extends Component {
         return (
 
             <Table>
-                {}
                 <thead>
                 <tr>
                     <th>id</th>
-
                 </tr>
                 </thead>
                 <tbody>
