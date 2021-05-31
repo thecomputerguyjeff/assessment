@@ -2,8 +2,8 @@ import logo from './logo.svg';
 import './App.css';
 import {Button} from "reactstrap";
 import {useState} from "react";
-import Header from "./HeaderandCustomerTable/Header";
-import CustomerTable from "./HeaderandCustomerTable/CustomerTable";
+import Head from "./components/Head";
+import CustomerTable from "./components/CustomerTable";
 
 
 
@@ -20,7 +20,7 @@ const App = () => {
 
     return (
         <div className="App">
-            <Header/>
+            <Head/>
             <CustomerTable/>
 
         </div>

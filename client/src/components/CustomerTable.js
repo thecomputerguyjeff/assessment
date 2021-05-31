@@ -1,6 +1,6 @@
 import React from "react";
-import {Table} from "reactstrap";
-import {get} from "../GetHeader/HeaderJson";
+import {get} from "../helper/fetch";
+import {Component} from "react/cjs/react.production.min";
 
 export default class CustomerInfo extends Component {
 
