@@ -1,7 +1,7 @@
 package com.example.server.test.controller;
 
 import com.example.server.test.model.ResponseData;
-import com.example.server.test.service.TestService;
+import com.example.server.test.TestService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;

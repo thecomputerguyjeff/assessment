@@ -1,4 +1,4 @@
-package com.example.server.test.service;
+package com.example.server.test;
 
 import com.example.server.test.model.ResponseData;
 import org.springframework.stereotype.Service;

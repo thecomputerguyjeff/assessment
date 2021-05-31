@@ -1,6 +1,3 @@
-
-
-
 const Head = (props) => {
 
     return (
