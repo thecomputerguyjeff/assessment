@@ -1,32 +1,35 @@
-import logo from './logo.svg';
 import './App.css';
-import {Button} from "reactstrap";
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import Head from "./components/Head";
+import {CustomInput} from "reactstrap";
 
 const App = () => {
-    const [testValue, setTestValue] = useState('value has not been set');
 
-    const getTestValue = () => {
-        fetch('http://localhost:8080/api/test', {
-            method: "GET",
-        })
-            .then(res => res.json())
-            .then(res => setTestValue(res.value));
-    }
+    const [customer, setCustomer] = useState('');
+    useEffect(() => {
+        const customer = JSON.parse(localStorage.getItem('customer'));
+        setCustomer(customer);
+    }, []);
+
+    const [head, setHead] = useState('');
+    useEffect(() => {
+        const head = JSON.parse(localStorage.getItem('head'));
+            setHead(head);
+    }, []);
 
     return (
         <div className="App">
             <header className="App-header">
-                <h1>
-                    This is your test value :
-                </h1>
-                <p>
-                    {testValue}
-                </p>
-                <Button onClick={getTestValue}>GetValue</Button>
+                <Head showHeader={head!==''} setHead={setHead} head={head}/>
             </header>
+            <body>
+            <Head showCustomer={customer!==''} setCustomer={setCustomer} customer={customer}/>
+            </body>
+
         </div>
     );
 }
-
 export default App;
+
+
