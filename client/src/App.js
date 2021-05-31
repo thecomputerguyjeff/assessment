@@ -2,6 +2,10 @@ import logo from './logo.svg';
 import './App.css';
 import {Button} from "reactstrap";
 import {useState} from "react";
+import Header from "./HeaderandCustomerTable/Header";
+import CustomerTable from "./HeaderandCustomerTable/CustomerTable";
+
+
 
 const App = () => {
     const [testValue, setTestValue] = useState('value has not been set');
@@ -16,15 +20,9 @@ const App = () => {
 
     return (
         <div className="App">
-            <header className="App-header">
-                <h1>
-                    This is your test value :
-                </h1>
-                <p>
-                    {testValue}
-                </p>
-                <Button onClick={getTestValue}>GetValue</Button>
-            </header>
+            <Header/>
+            <CustomerTable/>
+
         </div>
     );
 }
