@@ -1,32 +1,36 @@
-import logo from './logo.svg';
 import './App.css';
-import {Button} from "reactstrap";
-import {useState} from "react";
+import React, {Component} from 'react';
+import Header from "./components/Header";
+// import CustomerTable from "./components/CustomerTable";
 
-const App = () => {
-    const [testValue, setTestValue] = useState('value has not been set');
+export default class App extends Component {
 
-    const getTestValue = () => {
-        fetch('http://localhost:8080/api/test', {
+    constructor(props) {
+        super(props);
+        this.state = {"customers": {}};
+
+        fetch("/api/v1/getCustomers", {
             method: "GET",
-        })
-            .then(res => res.json())
-            .then(res => setTestValue(res.value));
+            headers: {
+                // 'Accept': 'application/json', *** I was getting a 404 error when I did the fetch until I commented this out.
+                'Content-Type': 'application/json'
+            }
+        }).then((response) => {
+            if (response.status === 200)
+                return response.json();
+            // throw '400'
+        }).then((data) => {
+            // console.log(data);
+            // this.setState({"customers": JSON.stringify(data)});//.customers = response;
+        });
     }
 
-    return (
+    render () {
+        return (
         <div className="App">
-            <header className="App-header">
-                <h1>
-                    This is your test value :
-                </h1>
-                <p>
-                    {testValue}
-                </p>
-                <Button onClick={getTestValue}>GetValue</Button>
-            </header>
+            <Header/>
+            {/*<CustomerTable customers={this.state.customers}/>*/}
         </div>
-    );
+        )
+    }
 }
-
-export default App;
