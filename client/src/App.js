@@ -1,10 +1,19 @@
 import logo from './logo.svg';
-import './App.css';
+import './css/App.css';
 import {Button} from "reactstrap";
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import {Header} from "./components/Header";
+import {CustomerTable} from "./components/CustomerTable";
 
 const App = () => {
     const [testValue, setTestValue] = useState('value has not been set');
+    const [customerList, setCustomerList] = useState([]);
+
+    useEffect(() => {
+        fetch('http://localhost:8080/api/v1/getCustomers')
+            .then(customers => customers.json())
+            .then(customers => setCustomerList(customers.customerList))
+    }, [])
 
     const getTestValue = () => {
         fetch('http://localhost:8080/api/test', {
@@ -16,17 +25,10 @@ const App = () => {
 
     return (
         <div className="App">
-            <header className="App-header">
-                <h1>
-                    This is your test value :
-                </h1>
-                <p>
-                    {testValue}
-                </p>
-                <Button onClick={getTestValue}>GetValue</Button>
-            </header>
+            <Header />
+            <CustomerTable customerList={customerList}/>
         </div>
     );
-}
+};
 
 export default App;
